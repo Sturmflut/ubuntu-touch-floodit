@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=floodit
+Exec=qmlscene $@ main.qml
+Icon=floodit.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+
