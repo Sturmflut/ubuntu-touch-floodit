@@ -54,23 +54,36 @@ Grid {
 
         if(getColor(x, y) === oldcolor)
         {
+            console.log("First " + oldcolor)
             pixelGrid.children[y * pixelGrid.columns + x].color = newcolor
+            console.log("Second " + oldcolor)
 
             // Left
             if(x > 0 && getColor(x - 1, y) === oldcolor)
+            {
                 fillRecursive(x - 1, y, oldcolor, newcolor)
+                console.log("Left " + oldcolor)
+            }
 
             // Right
             if(x < pixelGrid.columns - 1 && getColor(x + 1, y) === oldcolor)
+            {
                 fillRecursive(x + 1, y, oldcolor, newcolor)
+                console.log("Right " + oldcolor)
+            }
 
             // Top
             if(y > 0 && getColor(x, y - 1) === oldcolor)
+            {
                 fillRecursive(x, y - 1, oldcolor, newcolor)
+                console.log("Top " + oldcolor)
+            }
 
             // Bottom
             if(y < pixelGrid.rows - 1 && getColor(x, y + 1) === oldcolor)
-                fillRecursive(x, y + 1, oldcolor, newcolor)
+            {                fillRecursive(x, y + 1, oldcolor, newcolor)
+                console.log("Bottom " + oldcolor)
+            }
         }
     }
 
