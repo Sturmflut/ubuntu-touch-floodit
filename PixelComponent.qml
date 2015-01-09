@@ -16,6 +16,9 @@ Grid {
 
         Rectangle {
             id: rectangle
+
+            height: pixelGrid.height / pixelGrid.rows
+            width: pixelGrid.width / pixelGrid.columns
         }
     }
 
@@ -25,32 +28,9 @@ Grid {
             for(var y = 0; y < pixelGrid.rows; y++)
             {
                 var newPixel = pixelComponent.createObject(pixelGrid)
-
-                newPixel.height = pixelGrid.height / pixelGrid.rows
-                newPixel.width = pixelGrid.width / pixelGrid.columns
             }
 
         randomize()
-    }
-
-
-    onWidthChanged: {
-        for(var i = 0; i < pixelGrid.children.length; i++)
-        {
-            var pixel = pixelGrid.children[i]
-
-            pixel.width = width / pixelGrid.columns
-        }
-    }
-
-
-    onHeightChanged: {
-        for(var i = 0; i < pixelGrid.children.length; i++)
-        {
-            var pixel = pixelGrid.children[i]
-
-            pixel.height = height / pixelGrid.rows
-        }
     }
 
 
