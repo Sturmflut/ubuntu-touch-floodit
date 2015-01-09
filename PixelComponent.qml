@@ -34,12 +34,6 @@ Grid {
     }
 
 
-    function getColor(x, y)
-    {
-        return pixelGrid.children[y * pixelGrid.columns + x].color
-    }
-
-
     function randomize() {
         var colors = ["blue", "cyan", "green", "yellow", "red", "pink"]
 
@@ -50,46 +44,47 @@ Grid {
 
     function fillRecursive(x, y, oldcolor, newcolor, depth)
     {
-        console.log(x + "-" + y + " " + oldcolor + " " + newcolor + " " + getColor(x, y))
+        console.log(x + "-" + y + " " + oldcolor + " " + newcolor + " " + pixelGrid.children[y * pixelGrid.columns + x].color)
 
-        if(getColor(x, y) === oldcolor)
+        if(pixelGrid.children[y * pixelGrid.columns + x].color === oldcolor)
         {
             console.log("First " + oldcolor)
             pixelGrid.children[y * pixelGrid.columns + x].color = newcolor
             console.log("Second " + oldcolor)
 
             // Left
-            if(x > 0 && getColor(x - 1, y) === oldcolor)
+            if(x > 0 && pixelGrid.children[y * pixelGrid.columns + (x - 1)].color === oldcolor)
             {
-                fillRecursive(x - 1, y, oldcolor, newcolor)
                 console.log("Left " + oldcolor)
+                fillRecursive(x - 1, y, oldcolor, newcolor)
             }
 
             // Right
-            if(x < pixelGrid.columns - 1 && getColor(x + 1, y) === oldcolor)
+            if(x < pixelGrid.columns - 1 && pixelGrid.children[y * pixelGrid.columns + (x + 1)].color === oldcolor)
             {
-                fillRecursive(x + 1, y, oldcolor, newcolor)
                 console.log("Right " + oldcolor)
+                fillRecursive(x + 1, y, oldcolor, newcolor)
             }
 
             // Top
-            if(y > 0 && getColor(x, y - 1) === oldcolor)
+            if(y > 0 && pixelGrid.children[(y - 1) * pixelGrid.columns + x].color === oldcolor)
             {
-                fillRecursive(x, y - 1, oldcolor, newcolor)
                 console.log("Top " + oldcolor)
+                fillRecursive(x, y - 1, oldcolor, newcolor)
             }
 
             // Bottom
-            if(y < pixelGrid.rows - 1 && getColor(x, y + 1) === oldcolor)
-            {                fillRecursive(x, y + 1, oldcolor, newcolor)
+            if(y < pixelGrid.rows - 1 && pixelGrid.children[(y + 1) * pixelGrid.columns + x].color === oldcolor)
+            {
                 console.log("Bottom " + oldcolor)
+                fillRecursive(x, y + 1, oldcolor, newcolor)
             }
         }
     }
 
 
     function fill(newcolor) {
-        var oldcolor = getColor(0,0)
+        var oldcolor = pixelGrid.children[0].color
 
         fillRecursive(0, 0, oldcolor, newcolor)
     }
