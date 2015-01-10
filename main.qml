@@ -5,15 +5,12 @@ import Ubuntu.Components.Popups 1.0
 /*!
     \brief MainView with a Label and Button elements.
 */
-
 MainView {
     // objectName for functional testing purposes (autopilot-qt5)
     objectName: "mainView"
 
-    // Note! applicationName needs to match the "name" field of the click manifest
     applicationName: "com.ubuntu.developer.sturmflut.floodit"
 
-    // Removes the old toolbar and enables new features of the new header.
     useDeprecatedToolbar: false
 
     width: units.gu(70)

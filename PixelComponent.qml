@@ -1,6 +1,8 @@
 import QtQuick 2.0
 
-
+/*!
+    \brief PixelGrid, the central game component
+*/
 Grid {
     id: pixelGrid
 
@@ -10,9 +12,13 @@ Grid {
     columns: 12
     rows: 12
 
+    // true if the game has finished
     property bool gameFinished: false
 
 
+    /*!
+        \brief a pixelComponent is a single colored pixel on the grid.
+    */
     Component {
         id: pixelComponent
 
