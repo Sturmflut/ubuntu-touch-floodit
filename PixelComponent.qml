@@ -27,14 +27,12 @@ Grid {
             onColorIndexChanged: {
                 var colors = ["blue", "cyan", "green", "yellow", "red", "pink"]
 
-                console.log("onColorIndexChanged " + colorIndex)
                 color = colors[colorIndex]
             }
 
             Component.onCompleted: {
                 var colors = ["blue", "cyan", "green", "yellow", "red", "pink"]
 
-                console.log("onColorIndexChanged " + colorIndex)
                 color = colors[colorIndex]
             }
         }
@@ -74,8 +72,6 @@ Grid {
 
     function fillRecursive(x, y, oldcolor, newcolor, depth)
     {
-        console.log(x + "-" + y + " " + oldcolor + " " + newcolor + " " + pixelGrid.children[y * pixelGrid.columns + x].colorIndex)
-
         if(pixelGrid.children[y * pixelGrid.columns + x].colorIndex === oldcolor)
         {
             pixelGrid.children[y * pixelGrid.columns + x].colorIndex = newcolor
