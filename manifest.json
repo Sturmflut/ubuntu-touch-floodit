@@ -9,7 +9,7 @@
             "desktop": "floodit.desktop"
         }
     },
-    "version": "0.8",
+    "version": "0.8.1",
     "maintainer": "Sturm Flut <sturmflut@lieberbiber.de>",
     "framework": "ubuntu-sdk-14.10"
 }
