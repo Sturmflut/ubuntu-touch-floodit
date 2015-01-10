@@ -99,12 +99,12 @@ MainView {
                                         PopupUtils.open(winDialog)
                                         mainPage.gameRunning = false
                                     }
-
-                                    if(mainPage.currentScore === 22)
-                                    {
-                                        PopupUtils.open(loseDialog)
-                                        mainPage.gameRunning = false
-                                    }
+                                    else
+                                        if(mainPage.currentScore === 22)
+                                        {
+                                            PopupUtils.open(loseDialog)
+                                            mainPage.gameRunning = false
+                                        }
                                 }
                             }
                         }
