@@ -2,14 +2,14 @@
     "name": "com.ubuntu.developer.sturmflut.floodit",
     "description": "A clone of the popular \"Flood It!\" game",
     "architecture": "all",
-    "title": "FloodIt",
+    "title": "Flood It",
     "hooks": {
         "floodit": {
             "apparmor": "floodit.apparmor",
             "desktop": "floodit.desktop"
         }
     },
-    "version": "0.2",
+    "version": "0.8",
     "maintainer": "Sturm Flut <sturmflut@lieberbiber.de>",
     "framework": "ubuntu-sdk-14.10"
 }

@@ -1,8 +1,11 @@
 [Desktop Entry]
-Name=floodit
+Name=Flood It
+Comment=A clone of the popular Flood It! game
+Keywords=flood;game;touch;
 Exec=qmlscene $@ main.qml
 Icon=floodit.png
 Terminal=false
 Type=Application
 X-Ubuntu-Touch=true
-
+X-Ubuntu-Default-Department-ID=games
+X-Ubuntu-Splash-Title=Flood It
