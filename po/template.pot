@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-14 14:20+0100\n"
+"POT-Creation-Date: 2015-01-14 14:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,42 +17,42 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ui/GamePage.qml:9
+#: ui/GamePage.qml:12
 msgid "Flood It"
 msgstr ""
 
-#: ui/GamePage.qml:37 ui/GamePage.qml:93 ui/GamePage.qml:147
+#: ui/GamePage.qml:40 ui/GamePage.qml:96 ui/GamePage.qml:150
 msgid "Step"
 msgstr ""
 
-#: ui/GamePage.qml:43
+#: ui/GamePage.qml:46
 msgid "New"
 msgstr ""
 
-#: ui/GamePage.qml:126
+#: ui/GamePage.qml:129
 msgid "New Game"
 msgstr ""
 
-#: ui/GamePage.qml:133
+#: ui/GamePage.qml:136
 msgid "Board Size"
 msgstr ""
 
-#: ui/GamePage.qml:138 ui/GamePage.qml:169 ui/GamePage.qml:186
+#: ui/GamePage.qml:141 ui/GamePage.qml:172 ui/GamePage.qml:189
 msgid "Ok"
 msgstr ""
 
-#: ui/GamePage.qml:165
+#: ui/GamePage.qml:168
 msgid "Win!"
 msgstr ""
 
-#: ui/GamePage.qml:166
+#: ui/GamePage.qml:169
 msgid "Congratulations!"
 msgstr ""
 
-#: ui/GamePage.qml:182
+#: ui/GamePage.qml:185
 msgid "You lose!"
 msgstr ""
 
-#: ui/GamePage.qml:183
+#: ui/GamePage.qml:186
 msgid "Oh no!"
 msgstr ""

@@ -1,4 +1,5 @@
 import QtQuick 2.0
+
 import Ubuntu.Components 1.1
 
 import "ui"
@@ -16,6 +17,7 @@ MainView {
 
     width: units.gu(70)
     height: units.gu(100)
+
 
     GamePage {
         id: gamePage

@@ -1,9 +1,12 @@
 import QtQuick 2.0
+
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import Ubuntu.Components.ListItems 1.0 as ListItem
 
-
+/*!
+    \brief A Page implementing the actual "Flood It" game.
+*/
 Page {
     id: gamePage
     title: i18n.tr("Flood It")
@@ -49,16 +52,16 @@ Page {
         }
 
 
-        PixelComponent {
-            id: pixelComponent
+        PixelGrid {
+            id: pixelGrid
 
             width: parent.width
             height: parent.height - statusRow.height - buttonGrid.height
 
 
             Component.onCompleted: {
-                pixelComponent.setBoardSize(12)
-                pixelComponent.randomize()
+                pixelGrid.setGridSize(12)
+                pixelGrid.randomize()
             }
         }
 
@@ -87,12 +90,12 @@ Page {
                         onClicked: {
                             if(internal.gameRunning)
                             {
-                                pixelComponent.fill(colorIndex)
+                                pixelGrid.fill(colorIndex)
 
                                 internal.currentStep = internal.currentStep + 1
                                 scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
 
-                                if(pixelComponent.isFinished())
+                                if(pixelGrid.isFinished())
                                 {
                                     PopupUtils.open(winDialog)
                                     internal.gameRunning = false
@@ -108,7 +111,7 @@ Page {
                     }
 
                     Component.onCompleted: {
-                        var colors = pixelComponent.getColors()
+                        var colors = pixelGrid.getColors()
                         color = colors[colorIndex]
                     }
                 }
@@ -146,8 +149,8 @@ Page {
 
                     scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
 
-                    pixelComponent.setBoardSize(boardSizeSelector.model[boardSizeSelector.selectedIndex])
-                    pixelComponent.randomize()
+                    pixelGrid.setGridSize(boardSizeSelector.model[boardSizeSelector.selectedIndex])
+                    pixelGrid.randomize()
 
                     PopupUtils.close(dialogue)
                 }
