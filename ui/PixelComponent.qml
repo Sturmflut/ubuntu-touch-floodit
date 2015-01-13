@@ -1,5 +1,7 @@
 import QtQuick 2.0
 
+import Ubuntu.Components 1.1
+
 /*!
     \brief PixelGrid, the central game component
 */
@@ -27,22 +29,20 @@ Grid {
 
             color: "white"
 
-            QtObject {
-                id: internal
-
-                property int colorIndex
-            }
+            property int colorIndex
 
 
-            ColorAnimation on color {
+            PropertyAnimation {
                 id: colorAnimation
+                target: rectangle
+                properties: "color"
 
-                duration: 150
+                duration: UbuntuAnimation.FastDuration
             }
 
 
             function getColorIndex() {
-                return internal.colorIndex
+                return colorIndex
             }
 
 
@@ -50,9 +50,8 @@ Grid {
             {
                 var colors = getColors()
 
-                internal.colorIndex = newIndex
+                colorIndex = newIndex
 
-                colorAnimation.from = color
                 colorAnimation.to = colors[newIndex]
                 colorAnimation.start()
             }
