@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-09 19:40+0100\n"
+"POT-Creation-Date: 2015-01-14 14:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,42 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: main.qml:24
+#: ui/GamePage.qml:9
 msgid "Flood It"
 msgstr ""
 
-#: main.qml:42
+#: ui/GamePage.qml:37 ui/GamePage.qml:93 ui/GamePage.qml:147
 msgid "Step"
 msgstr ""
 
-#: main.qml:48
+#: ui/GamePage.qml:43
 msgid "New"
+msgstr ""
+
+#: ui/GamePage.qml:126
+msgid "New Game"
+msgstr ""
+
+#: ui/GamePage.qml:133
+msgid "Board Size"
+msgstr ""
+
+#: ui/GamePage.qml:138 ui/GamePage.qml:169 ui/GamePage.qml:186
+msgid "Ok"
+msgstr ""
+
+#: ui/GamePage.qml:165
+msgid "Win!"
+msgstr ""
+
+#: ui/GamePage.qml:166
+msgid "Congratulations!"
+msgstr ""
+
+#: ui/GamePage.qml:182
+msgid "You lose!"
+msgstr ""
+
+#: ui/GamePage.qml:183
+msgid "Oh no!"
 msgstr ""
