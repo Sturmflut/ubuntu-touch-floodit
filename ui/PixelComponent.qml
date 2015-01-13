@@ -81,12 +81,8 @@ Grid {
 
         for(var i = 1; i < pixelGrid.columns * pixelGrid.rows; i++)
             if(pixelGrid.children[i].colorIndex !== checkColor)
-            {
-                console.log("false")
                 return false
-            }
 
-        console.log("true")
         return true
     }
 
