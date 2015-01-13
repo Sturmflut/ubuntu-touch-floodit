@@ -32,12 +32,21 @@ Grid {
             property int colorIndex
 
 
-            PropertyAnimation {
-                id: colorAnimation
-                target: rectangle
-                properties: "color"
+            Behavior on color {
+                ColorAnimation {
+                    duration: UbuntuAnimation.FastDuration
+                }
+            }
 
-                duration: UbuntuAnimation.FastDuration
+            Component.onCompleted:  {
+                var colors = getColors()
+                color = colors[colorIndex]
+            }
+
+
+            onColorIndexChanged: {
+                var colors = getColors()
+                color = colors[colorIndex]
             }
 
 
@@ -48,12 +57,7 @@ Grid {
 
             function setColorIndex(newIndex)
             {
-                var colors = getColors()
-
                 colorIndex = newIndex
-
-                colorAnimation.to = colors[newIndex]
-                colorAnimation.start()
             }
         }
     }
