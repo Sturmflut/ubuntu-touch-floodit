@@ -1,0 +1,11 @@
+project = Flood It
+description = A clone of the popular \"Flood It!\" game
+
+outputdir = html
+outputformats = HTML
+
+headerdirs = ". ui"
+
+sourcedirs = ". ui"
+sources.fileextensions = "*.cpp *.qdoc *.mm *.qml"
+headers.fileextensions = "*.h *.ch *.h++ *.hh *.hpp *.hxx"
