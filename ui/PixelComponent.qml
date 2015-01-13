@@ -12,9 +12,6 @@ Grid {
     columns: 12
     rows: 12
 
-    // true if the game has finished
-    property bool gameFinished: false
-
 
     /*!
         \brief a pixelComponent is a single colored pixel on the grid.
@@ -31,13 +28,13 @@ Grid {
             width: pixelGrid.width / pixelGrid.columns
 
             onColorIndexChanged: {
-                var colors = ["blue", "cyan", "green", "yellow", "red", "pink"]
+                var colors = getColors()
 
                 color = colors[colorIndex]
             }
 
             Component.onCompleted: {
-                var colors = ["blue", "cyan", "green", "yellow", "red", "pink"]
+                var colors = getColors()
 
                 color = colors[colorIndex]
             }
@@ -54,6 +51,20 @@ Grid {
         randomize()
     }
 
+    function getColorIndex(x,y) {
+        return pixelGrid.children[y * pixelGrid.columns + x].colorIndex;
+    }
+
+
+    function setColorIndex(x, y, newcolor) {
+        pixelGrid.children[y * pixelGrid.columns + x].colorIndex = newcolor
+    }
+
+
+    function getColors() {
+        return ["blue", "cyan", "green", "yellow", "red", "violet"];
+    }
+
 
     /*
      * Randomize all pixel colors on the board.
@@ -61,41 +72,45 @@ Grid {
     function randomize() {
         for(var i = 0; i < pixelGrid.children.length; i++)
             pixelGrid.children[i].colorIndex = Math.floor(6 * Math.random())
-
-        gameFinished = false
     }
 
 
-    function checkFinished(newcolor)
+    function isFinished()
     {
-        for(var i = 0; i < pixelGrid.columns * pixelGrid.rows; i++)
-            if(pixelGrid.children[i].colorIndex !== newcolor)
-                return
+        var checkColor = getColorIndex(0, 0)
 
-        gameFinished = true
+        for(var i = 1; i < pixelGrid.columns * pixelGrid.rows; i++)
+            if(pixelGrid.children[i].colorIndex !== checkColor)
+            {
+                console.log("false")
+                return false
+            }
+
+        console.log("true")
+        return true
     }
 
 
     function fillRecursive(x, y, oldcolor, newcolor, depth)
     {
-        if(pixelGrid.children[y * pixelGrid.columns + x].colorIndex === oldcolor)
+        if(getColorIndex(x, y) === oldcolor)
         {
-            pixelGrid.children[y * pixelGrid.columns + x].colorIndex = newcolor
+            setColorIndex(x, y, newcolor)
 
             // Left
-            if(x > 0 && pixelGrid.children[y * pixelGrid.columns + (x - 1)].colorIndex === oldcolor)
+            if(x > 0 && getColorIndex(x - 1, y) === oldcolor)
                 fillRecursive(x - 1, y, oldcolor, newcolor)
 
             // Right
-            if(x < pixelGrid.columns - 1 && pixelGrid.children[y * pixelGrid.columns + (x + 1)].colorIndex === oldcolor)
+            if(x < pixelGrid.columns - 1 && getColorIndex(x + 1, y) === oldcolor)
                 fillRecursive(x + 1, y, oldcolor, newcolor)
 
             // Top
-            if(y > 0 && pixelGrid.children[(y - 1) * pixelGrid.columns + x].colorIndex === oldcolor)
+            if(y > 0 && getColorIndex(x, y - 1) === oldcolor)
                 fillRecursive(x, y - 1, oldcolor, newcolor)
 
             // Bottom
-            if(y < pixelGrid.rows - 1 && pixelGrid.children[(y + 1) * pixelGrid.columns + x].colorIndex === oldcolor)
+            if(y < pixelGrid.rows - 1 && getColorIndex(x, y + 1) === oldcolor)
                 fillRecursive(x, y + 1, oldcolor, newcolor)
         }
     }
@@ -105,10 +120,6 @@ Grid {
         var oldcolor = pixelGrid.children[0].colorIndex
 
         if(oldcolor !== newcolor)
-        {
             fillRecursive(0, 0, oldcolor, newcolor)
-
-            checkFinished(newcolor)
-        }
     }
 }

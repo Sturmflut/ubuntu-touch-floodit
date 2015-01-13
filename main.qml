@@ -17,14 +17,7 @@ MainView {
     width: units.gu(70)
     height: units.gu(100)
 
-    Tabs {
-        GameTab {
-            id: gameTab
-        }
-
-
-        SettingsTab {
-            id: settingsTab
-        }
+    GamePage {
+        id: gamePage
     }
 }
