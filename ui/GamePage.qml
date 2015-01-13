@@ -20,6 +20,12 @@ Page {
         property bool gameRunning: true
     }
 
+    QtObject {
+        id: constants
+
+        property variant colors: [ "blue", "cyan", "green", "yellow", "red", "violet"]
+    }
+
 
     Column {
         spacing: units.gu(1)
@@ -60,8 +66,33 @@ Page {
 
 
             Component.onCompleted: {
-                pixelGrid.setGridSize(12)
+                pixelGrid.setSize(12)
                 pixelGrid.randomize()
+            }
+
+
+            /*!
+                \brief Returns true if the whole board is grid is filled with the same color
+             */
+            function isFilled()
+            {
+                var checkColor = getColor(0, 0)
+
+                for(var i = 1; i < pixelGrid.getNumPixels(); i++)
+                    if(!Qt.colorEqual(pixelGrid.getColorAt(i), checkColor))
+                        return false
+
+                return true
+            }
+
+
+            /*!
+                \brief Randomizes the colors on the grid
+             */
+            function randomize() {
+                for(var i = 0; i < pixelGrid.getNumPixels(); i++)
+                    pixelGrid.setColorAt(i, constants.colors[Math.floor(6 * Math.random())])
+
             }
         }
 
@@ -74,7 +105,7 @@ Page {
             height: parent.width / 6
 
             Repeater {
-                model: [0, 1, 2, 3, 4, 5]
+                model: constants.colors
 
                 Rectangle {
                     width: parent.width / 6
@@ -82,7 +113,7 @@ Page {
 
                     radius: parent.height / 2
 
-                    property int colorIndex: modelData
+                    color: modelData
 
                     MouseArea {
                         anchors.fill: parent
@@ -90,12 +121,12 @@ Page {
                         onClicked: {
                             if(internal.gameRunning)
                             {
-                                pixelGrid.fill(colorIndex)
+                                pixelGrid.fill(color)
 
                                 internal.currentStep = internal.currentStep + 1
                                 scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
 
-                                if(pixelGrid.isFinished())
+                                if(pixelGrid.isFilled())
                                 {
                                     PopupUtils.open(winDialog)
                                     internal.gameRunning = false
@@ -108,11 +139,6 @@ Page {
                                     }
                             }
                         }
-                    }
-
-                    Component.onCompleted: {
-                        var colors = pixelGrid.getColors()
-                        color = colors[colorIndex]
                     }
                 }
             }
@@ -149,7 +175,7 @@ Page {
 
                     scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
 
-                    pixelGrid.setGridSize(boardSizeSelector.model[boardSizeSelector.selectedIndex])
+                    pixelGrid.setSize(boardSizeSelector.model[boardSizeSelector.selectedIndex])
                     pixelGrid.randomize()
 
                     PopupUtils.close(dialogue)

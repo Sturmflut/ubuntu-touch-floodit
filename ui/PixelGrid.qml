@@ -3,7 +3,7 @@ import QtQuick 2.0
 import Ubuntu.Components 1.1
 
 /*!
-    \brief A quadratic grid of animated "pixels" (colored rectangles).
+    \brief A quadratic grid of animated "pixels" (colored rectangles)
 */
 Grid {
     id: pixelGrid
@@ -27,8 +27,7 @@ Grid {
             height: pixelGrid.height / pixelGrid.rows
             width: pixelGrid.width / pixelGrid.columns
 
-            property int colorIndex
-
+            property color finalColor: color
 
             Behavior on color {
                 ColorAnimation {
@@ -37,26 +36,15 @@ Grid {
             }
 
 
-            Component.onCompleted:  {
-                var colors = getColors()
-                color = colors[colorIndex]
+            function getColor() {
+                return Qt.lighter(finalColor, 1.0)
             }
 
 
-            onColorIndexChanged: {
-                var colors = getColors()
-                color = colors[colorIndex]
-            }
-
-
-            function getColorIndex() {
-                return colorIndex
-            }
-
-
-            function setColorIndex(newIndex)
+            function setColor(newColor)
             {
-                colorIndex = newIndex
+                finalColor = Qt.lighter(newColor, 1.0)
+                color = Qt.lighter(newColor, 1.0)
             }
         }
     }
@@ -65,7 +53,7 @@ Grid {
     /*!
         \brief Change the size of the grid.
      */
-    function setGridSize(newSize) {
+    function setSize(newSize) {
         // If the size really changed
         if(newSize !== pixelGrid.columns)
         {
@@ -84,75 +72,92 @@ Grid {
 
 
     /*!
-        \brief Return the color index of a pixel
+        \brief Get the size of the grid.
      */
-    function getColorIndex(x, y) {
-        return pixelGrid.children[y * pixelGrid.columns + x].getColorIndex();
+    function getSize() {
+        return pixelGrid.columns
+    }
+
+
+    /*!
+        \brief Get the number of pixels on the grid
+     */
+    function getNumPixels() {
+        return pixelGrid.columns * pixelGrid.columns
+    }
+
+
+    /*!
+        \brief Return the color index of the pixel at (x, y)
+     */
+    function getColor(x, y) {
+        return getColorAt(y * getSize() + x)
+    }
+
+
+    /*!
+        \brief Return the color index of pixel number n
+     */
+    function getColorAt(n) {
+        return pixelGrid.children[n].getColor();
     }
 
 
     /*!
         \brief Set the color index of a pixel
      */
-    function setColorIndex(x, y, newcolor) {
-        pixelGrid.children[y * pixelGrid.columns + x].setColorIndex(newcolor)
+    function setColor(x, y, newcolor) {
+        pixelGrid.setColorAt(y * getSize() + x, newcolor)
     }
 
 
     /*!
-        \brief Return the current color list
+        \brief Set the color index of a pixel
      */
-    function getColors() {
-        return ["blue", "cyan", "green", "yellow", "red", "violet"];
-    }
-
-
-    /*!
-        \brief Randomize all pixel colors on the board.
-     */
-    function randomize() {
-        for(var i = 0; i < pixelGrid.children.length; i++)
-            pixelGrid.children[i].setColorIndex(Math.floor(6 * Math.random()))
-    }
-
-
-    /*!
-        \brief Returns true if the whole board is grid is filled with the same color
-     */
-    function isFinished()
-    {
-        var checkColor = getColorIndex(0, 0)
-
-        for(var i = 1; i < pixelGrid.columns * pixelGrid.rows; i++)
-            if(pixelGrid.children[i].getColorIndex() !== checkColor)
-                return false
-
-        return true
+    function setColorAt(n, newcolor) {
+        pixelGrid.children[n].setColor(newcolor)
     }
 
 
     /*!
         \brief Recursive filling function
      */
-    function fillRecursive(x, y, oldcolor, newcolor)
+    function fillRecursive(x, y, newcolor, oldcolor, depth)
     {
-        setColorIndex(x, y, newcolor)
+        console.log("Recursive: " + x + " " + y + " " + oldcolor + " " + newcolor + " " + getColor(x, y) + " " + depth)
 
-        // Left
-        if(x > 0 && getColorIndex(x - 1, y) === oldcolor)
-            fillRecursive(x - 1, y, oldcolor, newcolor)
+        if(Qt.colorEqual(getColor(x, y), newcolor) === false)
+        {
+            setColor(x, y, newcolor)
 
-        // Right
-        if(x < pixelGrid.columns - 1 && getColorIndex(x + 1, y) === oldcolor)
-            fillRecursive(x + 1, y, oldcolor, newcolor)
+            // Left
+            if(x > 0 && Qt.colorEqual(getColor(x - 1, y), oldcolor) === true)
+            {
+                console.log("Left " + oldcolor + " " + newcolor + " " + getColor(x - 1, y))
+                fillRecursive(x - 1, y, newcolor, oldcolor, depth + 1)
+            }
 
-        // Top
-        if(y > 0 && getColorIndex(x, y - 1) === oldcolor)
-            fillRecursive(x, y - 1, oldcolor, newcolor)
+            // Right
+            if(x < getSize() - 1 && Qt.colorEqual(getColor(x + 1, y), oldcolor) === true)
+            {
+                console.log("Right " + oldcolor + " " + newcolor + " " + getColor(x + 1, y))
+                fillRecursive(x + 1, y, newcolor, oldcolor, depth + 1)
+            }
 
-        // Bottom
-        if(y < pixelGrid.rows - 1 && getColorIndex(x, y + 1) === oldcolor)
-            fillRecursive(x, y + 1, oldcolor, newcolor)
+            // Top
+            if(y > 0 && Qt.colorEqual(getColor(x, y - 1), oldcolor) === true)
+            {
+                console.log("Top " + oldcolor + " " + newcolor + " " + getColor(x, y - 1))
+                fillRecursive(x, y - 1, newcolor, oldcolor, depth + 1)
+            }
+
+            // Bottom
+            if(y < getSize() - 1 && Qt.colorEqual(getColor(x, y + 1), oldcolor) === true)
+            {
+                console.log("Bottom " + oldcolor + " " + newcolor + " " + getColor(x, y + 1))
+                fillRecursive(x, y + 1, newcolor, oldcolor, depth + 1)
+            }
+        }
     }
 
 
@@ -161,9 +166,10 @@ Grid {
         adjacent pixels of the old color with the new color
      */
     function fill(newcolor) {
-        var oldcolor = pixelGrid.children[0].getColorIndex()
+        var oldcolor = getColorAt(0)
 
-        if(oldcolor !== newcolor)
-            fillRecursive(0, 0, oldcolor, newcolor)
+        console.log("Begin")
+        if(Qt.colorEqual(oldcolor, newcolor) === false)
+            fillRecursive(0, 0, newcolor, oldcolor, 0)
     }
 }
