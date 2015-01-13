@@ -48,17 +48,20 @@ Page {
             }
         }
 
+
         PixelComponent {
             id: pixelComponent
 
             width: parent.width
             height: parent.height - statusRow.height - buttonGrid.height
 
+
             Component.onCompleted: {
                 pixelComponent.setBoardSize(12)
                 pixelComponent.randomize()
             }
         }
+
 
         Grid {
             id: buttonGrid

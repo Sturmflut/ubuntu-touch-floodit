@@ -22,21 +22,39 @@ Grid {
         Rectangle {
             id: rectangle
 
-            property int colorIndex: 0
-
             height: pixelGrid.height / pixelGrid.rows
             width: pixelGrid.width / pixelGrid.columns
 
-            onColorIndexChanged: {
-                var colors = getColors()
+            color: "white"
 
-                color = colors[colorIndex]
+            QtObject {
+                id: internal
+
+                property int colorIndex
             }
 
-            Component.onCompleted: {
+
+            ColorAnimation on color {
+                id: colorAnimation
+
+                duration: 150
+            }
+
+
+            function getColorIndex() {
+                return internal.colorIndex
+            }
+
+
+            function setColorIndex(newIndex)
+            {
                 var colors = getColors()
 
-                color = colors[colorIndex]
+                internal.colorIndex = newIndex
+
+                colorAnimation.from = color
+                colorAnimation.to = colors[newIndex]
+                colorAnimation.start()
             }
         }
     }
@@ -60,13 +78,13 @@ Grid {
     }
 
 
-    function getColorIndex(x,y) {
-        return pixelGrid.children[y * pixelGrid.columns + x].colorIndex;
+    function getColorIndex(x, y) {
+        return pixelGrid.children[y * pixelGrid.columns + x].getColorIndex();
     }
 
 
     function setColorIndex(x, y, newcolor) {
-        pixelGrid.children[y * pixelGrid.columns + x].colorIndex = newcolor
+        pixelGrid.children[y * pixelGrid.columns + x].setColorIndex(newcolor)
     }
 
 
@@ -80,7 +98,7 @@ Grid {
      */
     function randomize() {
         for(var i = 0; i < pixelGrid.children.length; i++)
-            pixelGrid.children[i].colorIndex = Math.floor(6 * Math.random())
+            pixelGrid.children[i].setColorIndex(Math.floor(6 * Math.random()))
     }
 
 
@@ -89,7 +107,7 @@ Grid {
         var checkColor = getColorIndex(0, 0)
 
         for(var i = 1; i < pixelGrid.columns * pixelGrid.rows; i++)
-            if(pixelGrid.children[i].colorIndex !== checkColor)
+            if(pixelGrid.children[i].getColorIndex() !== checkColor)
                 return false
 
         return true
@@ -119,7 +137,7 @@ Grid {
 
 
     function fill(newcolor) {
-        var oldcolor = pixelGrid.children[0].colorIndex
+        var oldcolor = pixelGrid.children[0].getColorIndex()
 
         if(oldcolor !== newcolor)
             fillRecursive(0, 0, oldcolor, newcolor)
