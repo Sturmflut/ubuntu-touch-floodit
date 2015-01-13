@@ -29,6 +29,7 @@ Grid {
 
             property color finalColor: color
 
+
             Behavior on color {
                 ColorAnimation {
                     duration: UbuntuAnimation.FastDuration
@@ -124,7 +125,6 @@ Grid {
      */
     function fillRecursive(x, y, newcolor, oldcolor, depth)
     {
-        console.log("Recursive: " + x + " " + y + " " + oldcolor + " " + newcolor + " " + getColor(x, y) + " " + depth)
 
         if(Qt.colorEqual(getColor(x, y), newcolor) === false)
         {
@@ -132,31 +132,19 @@ Grid {
 
             // Left
             if(x > 0 && Qt.colorEqual(getColor(x - 1, y), oldcolor) === true)
-            {
-                console.log("Left " + oldcolor + " " + newcolor + " " + getColor(x - 1, y))
                 fillRecursive(x - 1, y, newcolor, oldcolor, depth + 1)
-            }
 
             // Right
             if(x < getSize() - 1 && Qt.colorEqual(getColor(x + 1, y), oldcolor) === true)
-            {
-                console.log("Right " + oldcolor + " " + newcolor + " " + getColor(x + 1, y))
                 fillRecursive(x + 1, y, newcolor, oldcolor, depth + 1)
-            }
 
             // Top
             if(y > 0 && Qt.colorEqual(getColor(x, y - 1), oldcolor) === true)
-            {
-                console.log("Top " + oldcolor + " " + newcolor + " " + getColor(x, y - 1))
                 fillRecursive(x, y - 1, newcolor, oldcolor, depth + 1)
-            }
 
             // Bottom
             if(y < getSize() - 1 && Qt.colorEqual(getColor(x, y + 1), oldcolor) === true)
-            {
-                console.log("Bottom " + oldcolor + " " + newcolor + " " + getColor(x, y + 1))
                 fillRecursive(x, y + 1, newcolor, oldcolor, depth + 1)
-            }
         }
     }
 
@@ -168,7 +156,6 @@ Grid {
     function fill(newcolor) {
         var oldcolor = getColorAt(0)
 
-        console.log("Begin")
         if(Qt.colorEqual(oldcolor, newcolor) === false)
             fillRecursive(0, 0, newcolor, oldcolor, 0)
     }
