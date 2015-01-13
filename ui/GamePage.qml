@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components.ListItems 1.0 as ListItem
 
 
 Page {
@@ -11,6 +12,8 @@ Page {
         id: internal
 
         property int currentStep: 0
+        property int maximumStep: 22
+
         property bool gameRunning: true
     }
 
@@ -40,12 +43,7 @@ Page {
                 text: i18n.tr("New")
 
                 onClicked: {
-                    pixelComponent.randomize()
-
-                    internal.currentStep = 0
-                    internal.gameRunning = true
-
-                    scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / 22"
+                    PopupUtils.open(newGameDialog)
                 }
             }
         }
@@ -55,6 +53,11 @@ Page {
 
             width: parent.width
             height: parent.height - statusRow.height - buttonGrid.height
+
+            Component.onCompleted: {
+                pixelComponent.setBoardSize(12)
+                pixelComponent.randomize()
+            }
         }
 
         Grid {
@@ -84,7 +87,7 @@ Page {
                                 pixelComponent.fill(colorIndex)
 
                                 internal.currentStep = internal.currentStep + 1
-                                scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / 22"
+                                scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
 
                                 if(pixelComponent.isFinished())
                                 {
@@ -92,7 +95,7 @@ Page {
                                     internal.gameRunning = false
                                 }
                                 else
-                                    if(internal.currentStep === 22)
+                                    if(internal.currentStep === internal.maximumStep)
                                     {
                                         PopupUtils.open(loseDialog)
                                         internal.gameRunning = false
@@ -105,6 +108,45 @@ Page {
                         var colors = pixelComponent.getColors()
                         color = colors[colorIndex]
                     }
+                }
+            }
+        }
+    }
+
+
+    Component {
+        id: newGameDialog
+
+        Dialog {
+            id: dialogue
+
+            title: i18n.tr("New Game")
+
+            property int boardSize
+
+            OptionSelector {
+                id: boardSizeSelector
+
+                text: i18n.tr("Board Size")
+                model: [12, 17, 22]
+            }
+
+            Button {
+                text: i18n.tr("Ok")
+                onClicked: {
+                    var maxSteps = [22, 30, 36]
+
+                    internal.maximumStep = maxSteps[boardSizeSelector.selectedIndex]
+
+                    internal.currentStep = 0
+                    internal.gameRunning = true
+
+                    scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
+
+                    pixelComponent.setBoardSize(boardSizeSelector.model[boardSizeSelector.selectedIndex])
+                    pixelComponent.randomize()
+
+                    PopupUtils.close(dialogue)
                 }
             }
         }

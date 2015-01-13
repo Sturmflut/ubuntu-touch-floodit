@@ -9,8 +9,8 @@ Grid {
     width: parent.width
     height: parent.height
 
-    columns: 12
-    rows: 12
+    columns: 0
+    rows: columns
 
 
     /*!
@@ -22,7 +22,7 @@ Grid {
         Rectangle {
             id: rectangle
 
-            property int colorIndex
+            property int colorIndex: 0
 
             height: pixelGrid.height / pixelGrid.rows
             width: pixelGrid.width / pixelGrid.columns
@@ -42,14 +42,23 @@ Grid {
     }
 
 
-    Component.onCompleted: {
-        // Create pixels
-        for(var i = 0; i < pixelGrid.columns * pixelGrid.rows; i++)
-            var newPixel = pixelComponent.createObject(pixelGrid)
+    function setBoardSize(newSize) {
+        // If the size really changed
+        if(newSize !== pixelGrid.columns)
+        {
+            // Update grid size
+            pixelGrid.columns = newSize
+            pixelGrid.rows = newSize
 
-        // Randomize colors
-        randomize()
+            // Clear old pixels
+            pixelGrid.children = ""
+
+            // Create pixels
+            for(var i = 0; i < pixelGrid.columns * pixelGrid.rows; i++)
+                var newPixel = pixelComponent.createObject(pixelGrid)
+        }
     }
+
 
     function getColorIndex(x,y) {
         return pixelGrid.children[y * pixelGrid.columns + x].colorIndex;
