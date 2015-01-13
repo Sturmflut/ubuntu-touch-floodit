@@ -93,26 +93,23 @@ Grid {
 
     function fillRecursive(x, y, oldcolor, newcolor, depth)
     {
-        if(getColorIndex(x, y) === oldcolor)
-        {
-            setColorIndex(x, y, newcolor)
+        setColorIndex(x, y, newcolor)
 
-            // Left
-            if(x > 0 && getColorIndex(x - 1, y) === oldcolor)
-                fillRecursive(x - 1, y, oldcolor, newcolor)
+        // Left
+        if(x > 0 && getColorIndex(x - 1, y) === oldcolor)
+            fillRecursive(x - 1, y, oldcolor, newcolor)
 
-            // Right
-            if(x < pixelGrid.columns - 1 && getColorIndex(x + 1, y) === oldcolor)
-                fillRecursive(x + 1, y, oldcolor, newcolor)
+        // Right
+        if(x < pixelGrid.columns - 1 && getColorIndex(x + 1, y) === oldcolor)
+            fillRecursive(x + 1, y, oldcolor, newcolor)
 
-            // Top
-            if(y > 0 && getColorIndex(x, y - 1) === oldcolor)
-                fillRecursive(x, y - 1, oldcolor, newcolor)
+        // Top
+        if(y > 0 && getColorIndex(x, y - 1) === oldcolor)
+            fillRecursive(x, y - 1, oldcolor, newcolor)
 
-            // Bottom
-            if(y < pixelGrid.rows - 1 && getColorIndex(x, y + 1) === oldcolor)
-                fillRecursive(x, y + 1, oldcolor, newcolor)
-        }
+        // Bottom
+        if(y < pixelGrid.rows - 1 && getColorIndex(x, y + 1) === oldcolor)
+            fillRecursive(x, y + 1, oldcolor, newcolor)
     }
 
 
