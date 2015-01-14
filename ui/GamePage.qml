@@ -22,7 +22,6 @@ Page {
         id: internal
 
         property int currentStep: 0
-        property int maximumStep: constants.maximumSteps[0]
 
         property int sizeIndex: 0
 
@@ -136,7 +135,7 @@ Page {
                     pixelGrid.fill(color)
 
                     internal.currentStep = internal.currentStep + 1
-                    scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
+                    scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + constants.maximumSteps[internal.sizeIndex]
 
                     if(pixelGrid.isFilled())
                     {
@@ -144,7 +143,7 @@ Page {
                         internal.gameRunning = false
                     }
                     else
-                        if(internal.currentStep === internal.maximumStep)
+                        if(internal.currentStep === constants.maximumSteps[internal.sizeIndex])
                         {
                             PopupUtils.open(loseDialog)
                             internal.gameRunning = false
@@ -155,12 +154,15 @@ Page {
     }
 
 
+    /*!
+        Reset the game
+     */
     function resetGame()
     {
         internal.currentStep = 0
         internal.gameRunning = true
 
-        scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
+        scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + constants.maximumSteps[internal.sizeIndex]
 
         pixelGrid.setSize(constants.boardSizes[internal.sizeIndex])
         pixelGrid.randomize()
@@ -192,8 +194,6 @@ Page {
                 text: i18n.tr("Ok")
 
                 onClicked: {
-                    internal.maximumStep = constants.maximumSteps[boardSizeSelector.selectedIndex]
-
                     gamePage.resetGame()
 
                     PopupUtils.close(dialogue)

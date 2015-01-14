@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-15 18:22+0100\n"
+"POT-Creation-Date: 2015-01-15 18:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Congratulations!"
 msgstr ""
 
-#: ui/WinDialog.qml:15 ui/LoseDialog.qml:15 ui/GamePage.qml:192
+#: ui/WinDialog.qml:15 ui/LoseDialog.qml:15 ui/GamePage.qml:194
 #: ui/GamePage.qml:256
 msgid "Ok"
 msgstr ""
@@ -42,15 +42,15 @@ msgstr ""
 msgid "Flood It"
 msgstr ""
 
-#: ui/GamePage.qml:51 ui/GamePage.qml:139 ui/GamePage.qml:163
+#: ui/GamePage.qml:50 ui/GamePage.qml:138 ui/GamePage.qml:165
 msgid "Step"
 msgstr ""
 
-#: ui/GamePage.qml:176
+#: ui/GamePage.qml:178
 msgid "New Game"
 msgstr ""
 
-#: ui/GamePage.qml:181
+#: ui/GamePage.qml:183
 msgid "Board Size"
 msgstr ""
 
