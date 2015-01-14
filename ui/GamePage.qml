@@ -33,6 +33,8 @@ Page {
             [ "black", "grey", "lightgrey", "red", "orange", "yellow" ],
             [ "blue", "cyan", "black", "green", "yellow", "red" ]
         ]
+
+        property variant boardSizes: [12, 17, 22]
     }
 
 
@@ -146,7 +148,7 @@ Page {
                 id: boardSizeSelector
 
                 text: i18n.tr("Board Size")
-                model: [12, 17, 22]
+                model: constants.boardSizes
                 expanded: true
 
                 Component.onCompleted: selectedIndex = internal.sizeIndex
@@ -237,7 +239,7 @@ Page {
 
                     scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
 
-                    buttonGridRepeater.model =constants.colors[paletteSelector.selectedIndex]
+                    buttonGrid.model = constants.colors[paletteSelector.selectedIndex]
                     pixelGrid.randomize()
 
                     PopupUtils.close(dialogue)
