@@ -155,6 +155,18 @@ Page {
     }
 
 
+    function resetGame()
+    {
+        internal.currentStep = 0
+        internal.gameRunning = true
+
+        scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
+
+        pixelGrid.setSize(constants.boardSizes[internal.sizeIndex])
+        pixelGrid.randomize()
+    }
+
+
     Component {
         id: newGameDialog
 
@@ -182,13 +194,7 @@ Page {
                 onClicked: {
                     internal.maximumStep = constants.maximumSteps[boardSizeSelector.selectedIndex]
 
-                    internal.currentStep = 0
-                    internal.gameRunning = true
-
-                    scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
-
-                    pixelGrid.setSize(boardSizeSelector.model[boardSizeSelector.selectedIndex])
-                    pixelGrid.randomize()
+                    gamePage.resetGame()
 
                     PopupUtils.close(dialogue)
                 }
@@ -250,21 +256,16 @@ Page {
                 text: i18n.tr("Ok")
 
                 onClicked: {
-                    internal.currentStep = 0
-                    internal.gameRunning = true
                     internal.colorIndex = paletteSelector.selectedIndex
-
-                    scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
-
                     buttonGrid.model = constants.colors[paletteSelector.selectedIndex]
-                    pixelGrid.randomize()
+
+                    gamePage.resetGame()
 
                     PopupUtils.close(dialogue)
                 }
             }
         }
     }
-
 
 
     WinDialog {
