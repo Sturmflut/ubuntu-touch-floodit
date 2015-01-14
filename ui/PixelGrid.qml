@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 import Ubuntu.Components 1.1
 
+
 /*!
     \brief A quadratic grid of animated "pixels" (colored rectangles)
 */

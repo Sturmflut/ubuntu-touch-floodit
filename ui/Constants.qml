@@ -2,8 +2,6 @@ import QtQuick 2.0
 
 
 QtObject {
-    id: constants
-
     readonly property variant colors: [
         [ "blue", "cyan", "green", "yellow", "red", "violet" ],
         [ "black", "grey", "lightgrey", "red", "orange", "yellow" ],

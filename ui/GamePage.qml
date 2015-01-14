@@ -12,6 +12,12 @@ Page {
     id: gamePage
     title: i18n.tr("Flood It")
 
+
+    Constants {
+        id: constants
+    }
+
+
     QtObject {
         id: internal
 
@@ -23,11 +29,6 @@ Page {
         property int colorIndex: 0
 
         property bool gameRunning: true
-    }
-
-
-    Constants {
-        id: constants
     }
 
 
@@ -64,11 +65,13 @@ Page {
                 }
             }
 
+
             Item {
                 id: filler
                 height: parent.height
                 width: height
             }
+
 
             Button {
                 id: newButton
@@ -120,6 +123,7 @@ Page {
                     pixelGrid.setColorAt(i, constants.colors[internal.colorIndex][Math.floor(6 * Math.random())])
             }
         }
+
 
         ButtonGrid {
             id: buttonGrid
@@ -262,36 +266,13 @@ Page {
     }
 
 
-    Component {
+
+    WinDialog {
         id: winDialog
-
-        Dialog {
-            id: dialogue
-
-            title: i18n.tr("Win!")
-            text: i18n.tr("Congratulations!")
-
-            Button {
-                text: i18n.tr("Ok")
-                onClicked: PopupUtils.close(dialogue)
-            }
-        }
     }
 
 
-    Component {
+    LoseDialog {
         id: loseDialog
-
-        Dialog {
-            id: dialogue
-
-            title: i18n.tr("You lose!")
-            text: i18n.tr("Oh no!")
-
-            Button {
-                text: i18n.tr("Ok")
-                onClicked: PopupUtils.close(dialogue)
-            }
-        }
     }
 }

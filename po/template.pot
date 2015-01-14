@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-15 18:08+0100\n"
+"POT-Creation-Date: 2015-01-15 18:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,48 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ui/WinDialog.qml:11
+msgid "Win!"
+msgstr ""
+
+#: ui/WinDialog.qml:12
+msgid "Congratulations!"
+msgstr ""
+
+#: ui/WinDialog.qml:15 ui/LoseDialog.qml:15 ui/GamePage.qml:180
+#: ui/GamePage.qml:250
+msgid "Ok"
+msgstr ""
+
+#: ui/LoseDialog.qml:11
+msgid "You lose!"
+msgstr ""
+
+#: ui/LoseDialog.qml:12
+msgid "Oh no!"
+msgstr ""
+
 #: ui/GamePage.qml:13
 msgid "Flood It"
 msgstr ""
 
-#: ui/GamePage.qml:50 ui/GamePage.qml:135 ui/GamePage.qml:184
-#: ui/GamePage.qml:253
+#: ui/GamePage.qml:51 ui/GamePage.qml:139 ui/GamePage.qml:188
+#: ui/GamePage.qml:257
 msgid "Step"
 msgstr ""
 
-#: ui/GamePage.qml:160
+#: ui/GamePage.qml:164
 msgid "New Game"
 msgstr ""
 
-#: ui/GamePage.qml:165
+#: ui/GamePage.qml:169
 msgid "Board Size"
 msgstr ""
 
-#: ui/GamePage.qml:176 ui/GamePage.qml:246 ui/GamePage.qml:275
-#: ui/GamePage.qml:292
-msgid "Ok"
-msgstr ""
-
-#: ui/GamePage.qml:202
+#: ui/GamePage.qml:206
 msgid "Setup"
 msgstr ""
 
-#: ui/GamePage.qml:207
+#: ui/GamePage.qml:211
 msgid "Palette"
-msgstr ""
-
-#: ui/GamePage.qml:271
-msgid "Win!"
-msgstr ""
-
-#: ui/GamePage.qml:272
-msgid "Congratulations!"
-msgstr ""
-
-#: ui/GamePage.qml:288
-msgid "You lose!"
-msgstr ""
-
-#: ui/GamePage.qml:289
-msgid "Oh no!"
 msgstr ""
