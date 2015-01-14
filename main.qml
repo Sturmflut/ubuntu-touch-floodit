@@ -8,7 +8,7 @@ import "ui"
     \brief MainView with a Label and Button elements.
 */
 MainView {
-    // objectName for functional testing purposes (autopilot-qt5)
+    id: mainView
     objectName: "mainView"
 
     applicationName: "com.ubuntu.developer.sturmflut.floodit"

@@ -4,6 +4,7 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import Ubuntu.Components.ListItems 1.0 as ListItem
 
+
 /*!
     \brief A Page implementing the actual "Flood It" game.
 */
@@ -16,6 +17,7 @@ Page {
 
         property int currentStep: 0
         property int maximumStep: 22
+        property int sizeIndex: 0
 
         property bool gameRunning: true
     }
@@ -155,12 +157,18 @@ Page {
 
             property int boardSize
 
-            OptionSelector {
+            ListItem.ItemSelector {
                 id: boardSizeSelector
 
                 text: i18n.tr("Board Size")
                 model: [12, 17, 22]
+                expanded: true
+
+                Component.onCompleted: selectedIndex = internal.sizeIndex
+
+                onSelectedIndexChanged: internal.sizeIndex = selectedIndex
             }
+
 
             Button {
                 text: i18n.tr("Ok")
