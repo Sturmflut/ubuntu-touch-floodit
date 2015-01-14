@@ -24,28 +24,10 @@ Grid {
             MouseArea {
                 anchors.fill: parent
 
-                onClicked: {
-                    if(internal.gameRunning)
-                    {
-                        pixelGrid.fill(color)
-
-                        internal.currentStep = internal.currentStep + 1
-                        scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
-
-                        if(pixelGrid.isFilled())
-                        {
-                            PopupUtils.open(winDialog)
-                            internal.gameRunning = false
-                        }
-                        else
-                            if(internal.currentStep === internal.maximumStep)
-                            {
-                                PopupUtils.open(loseDialog)
-                                internal.gameRunning = false
-                            }
-                    }
-                }
+                onClicked: buttonGrid.clicked(parent.color)
             }
         }
     }
+
+    signal clicked(color color)
 }

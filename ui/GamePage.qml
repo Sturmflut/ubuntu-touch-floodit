@@ -16,7 +16,7 @@ Page {
         id: internal
 
         property int currentStep: 0
-        property int maximumStep: 22
+        property int maximumStep: constants.maximumSteps[0]
 
         property int sizeIndex: 0
 
@@ -35,6 +35,7 @@ Page {
         ]
 
         property variant boardSizes: [12, 17, 22]
+        property variant maximumSteps: [22, 30, 36]
     }
 
 
@@ -132,6 +133,28 @@ Page {
             id: buttonGrid
 
             model: constants.colors[0]
+
+            onClicked: {
+                if(internal.gameRunning)
+                {
+                    pixelGrid.fill(color)
+
+                    internal.currentStep = internal.currentStep + 1
+                    scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
+
+                    if(pixelGrid.isFilled())
+                    {
+                        PopupUtils.open(winDialog)
+                        internal.gameRunning = false
+                    }
+                    else
+                        if(internal.currentStep === internal.maximumStep)
+                        {
+                            PopupUtils.open(loseDialog)
+                            internal.gameRunning = false
+                        }
+                }
+            }
         }
     }
 
@@ -161,9 +184,7 @@ Page {
                 text: i18n.tr("Ok")
 
                 onClicked: {
-                    var maxSteps = [22, 30, 36]
-
-                    internal.maximumStep = maxSteps[boardSizeSelector.selectedIndex]
+                    internal.maximumStep = constants.maximumSteps[boardSizeSelector.selectedIndex]
 
                     internal.currentStep = 0
                     internal.gameRunning = true
