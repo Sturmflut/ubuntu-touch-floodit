@@ -20,6 +20,5 @@ MainView {
 
 
     GamePage {
-        id: gamePage
     }
 }

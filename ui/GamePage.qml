@@ -92,7 +92,6 @@ Page {
             function randomize() {
                 for(var i = 0; i < pixelGrid.getNumPixels(); i++)
                     pixelGrid.setColorAt(i, constants.colors[Math.floor(6 * Math.random())])
-
             }
         }
 
