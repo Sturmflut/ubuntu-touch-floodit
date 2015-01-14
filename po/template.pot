@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-15 16:15+0100\n"
+"POT-Creation-Date: 2015-01-15 17:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,38 +21,44 @@ msgstr ""
 msgid "Flood It"
 msgstr ""
 
-#: ui/GamePage.qml:48 ui/GamePage.qml:128 ui/GamePage.qml:183
+#: ui/GamePage.qml:55 ui/GamePage.qml:158 ui/GamePage.qml:212
+#: ui/GamePage.qml:281
 msgid "Step"
 msgstr ""
 
-#: ui/GamePage.qml:54
-msgid "New"
-msgstr ""
-
-#: ui/GamePage.qml:156
+#: ui/GamePage.qml:186
 msgid "New Game"
 msgstr ""
 
-#: ui/GamePage.qml:163
+#: ui/GamePage.qml:191
 msgid "Board Size"
 msgstr ""
 
-#: ui/GamePage.qml:174 ui/GamePage.qml:205 ui/GamePage.qml:222
+#: ui/GamePage.qml:202 ui/GamePage.qml:274 ui/GamePage.qml:303
+#: ui/GamePage.qml:320
 msgid "Ok"
 msgstr ""
 
-#: ui/GamePage.qml:201
+#: ui/GamePage.qml:230
+msgid "Setup"
+msgstr ""
+
+#: ui/GamePage.qml:235
+msgid "Palette"
+msgstr ""
+
+#: ui/GamePage.qml:299
 msgid "Win!"
 msgstr ""
 
-#: ui/GamePage.qml:202
+#: ui/GamePage.qml:300
 msgid "Congratulations!"
 msgstr ""
 
-#: ui/GamePage.qml:218
+#: ui/GamePage.qml:316
 msgid "You lose!"
 msgstr ""
 
-#: ui/GamePage.qml:219
+#: ui/GamePage.qml:317
 msgid "Oh no!"
 msgstr ""

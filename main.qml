@@ -20,5 +20,6 @@ MainView {
 
 
     GamePage {
+        id: gamePage
     }
 }

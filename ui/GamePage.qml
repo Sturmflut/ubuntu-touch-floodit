@@ -17,7 +17,10 @@ Page {
 
         property int currentStep: 0
         property int maximumStep: 22
+
         property int sizeIndex: 0
+
+        property int colorIndex: 0
 
         property bool gameRunning: true
     }
@@ -25,7 +28,11 @@ Page {
     QtObject {
         id: constants
 
-        property variant colors: [ "blue", "cyan", "green", "yellow", "red", "violet"]
+        property variant colors: [
+            [ "blue", "cyan", "green", "yellow", "red", "violet" ],
+            [ "black", "grey", "lightgrey", "red", "orange", "yellow" ],
+            [ "blue", "cyan", "black", "green", "yellow", "red" ]
+        ]
     }
 
 
@@ -43,15 +50,37 @@ Page {
             Label {
                 id: scoreLabel
 
-                width: parent.width - newButton.width
+                width: parent.width - filler.width - paletteButton.width - newButton.width
 
                 text: i18n.tr("Step") + " 0 / 22"
+            }
+
+
+            Button {
+                id: paletteButton
+                text: ""
+
+                iconName: "settings"
+
+                width: height
+
+                onClicked: {
+                    PopupUtils.open(setupDialog)
+                }
+            }
+
+            Item {
+                id: filler
+                height: parent.height
+                width: height
             }
 
             Button {
                 id: newButton
 
-                text: i18n.tr("New")
+                iconName: "reload"
+
+                width: height
 
                 onClicked: {
                     PopupUtils.open(newGameDialog)
@@ -93,7 +122,7 @@ Page {
              */
             function randomize() {
                 for(var i = 0; i < pixelGrid.getNumPixels(); i++)
-                    pixelGrid.setColorAt(i, constants.colors[Math.floor(6 * Math.random())])
+                    pixelGrid.setColorAt(i, constants.colors[internal.colorIndex][Math.floor(6 * Math.random())])
             }
         }
 
@@ -106,13 +135,14 @@ Page {
             height: parent.width / 6
 
             Repeater {
-                model: constants.colors
+                id: buttonGridRepeater
+
+                model: constants.colors[0]
 
                 Rectangle {
                     width: parent.width / 6
-                    height: parent.height
-
-                    radius: parent.height / 2
+                    height: width
+                    radius: height
 
                     color: modelData
 
@@ -155,8 +185,6 @@ Page {
 
             title: i18n.tr("New Game")
 
-            property int boardSize
-
             ListItem.ItemSelector {
                 id: boardSizeSelector
 
@@ -172,6 +200,7 @@ Page {
 
             Button {
                 text: i18n.tr("Ok")
+
                 onClicked: {
                     var maxSteps = [22, 30, 36]
 
@@ -183,6 +212,75 @@ Page {
                     scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
 
                     pixelGrid.setSize(boardSizeSelector.model[boardSizeSelector.selectedIndex])
+                    pixelGrid.randomize()
+
+                    PopupUtils.close(dialogue)
+                }
+            }
+        }
+    }
+
+
+    Component {
+        id: setupDialog
+
+        Dialog {
+            id: dialogue
+
+            title: i18n.tr("Setup")
+
+            OptionSelector {
+                id: paletteSelector
+
+                text: i18n.tr("Palette")
+                model: constants.colors
+                expanded: true
+
+                delegate: colorListItemComponent
+
+                Component.onCompleted: selectedIndex = internal.colorIndex
+            }
+
+
+            Component {
+                id: colorListItemComponent
+
+                OptionSelectorDelegate {
+                    Grid {
+                        columns: 6
+                        rows: 1
+
+                        anchors.fill: parent
+
+                        Repeater {
+                            height: parent.height
+
+                            model: modelData
+
+                            Rectangle {
+                                color: modelData
+                                width: parent.width / 6
+                                height: width
+
+                                radius: parent.height / 2
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            Button {
+                text: i18n.tr("Ok")
+
+                onClicked: {
+                    internal.currentStep = 0
+                    internal.gameRunning = true
+                    internal.colorIndex = paletteSelector.selectedIndex
+
+                    scoreLabel.text = i18n.tr("Step") + " " + internal.currentStep + " / " + internal.maximumStep
+
+                    buttonGridRepeater.model =constants.colors[paletteSelector.selectedIndex]
                     pixelGrid.randomize()
 
                     PopupUtils.close(dialogue)
