@@ -15,8 +15,8 @@ MainView {
 
     useDeprecatedToolbar: false
 
-    width: units.gu(70)
-    height: units.gu(100)
+    width: units.gu(50)
+    height: units.gu(75)
 
 
     GamePage {
