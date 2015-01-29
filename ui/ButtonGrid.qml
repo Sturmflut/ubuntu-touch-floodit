@@ -22,6 +22,8 @@ Grid {
             height: width
             radius: height
 
+            color: modelData
+
             gradient: Gradient {
                 GradientStop { position: 0.0; color: modelData }
                 GradientStop { position: 0.15; color: Qt.lighter(modelData, 1.4) }
