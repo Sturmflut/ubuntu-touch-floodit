@@ -80,7 +80,7 @@ Page {
                 width: height
 
                 onClicked: {
-                    PopupUtils.open(newGameDialog)
+                    resetGame()
                 }
             }
         }
@@ -170,40 +170,6 @@ Page {
 
 
     Component {
-        id: newGameDialog
-
-        Dialog {
-            id: dialogue
-
-            title: i18n.tr("New Game")
-
-            ListItem.ItemSelector {
-                id: boardSizeSelector
-
-                text: i18n.tr("Board Size")
-                model: constants.boardSizes
-                expanded: true
-
-                Component.onCompleted: selectedIndex = internal.sizeIndex
-
-                onSelectedIndexChanged: internal.sizeIndex = selectedIndex
-            }
-
-
-            Button {
-                text: i18n.tr("Ok")
-
-                onClicked: {
-                    gamePage.resetGame()
-
-                    PopupUtils.close(dialogue)
-                }
-            }
-        }
-    }
-
-
-    Component {
         id: setupDialog
 
         Dialog {
@@ -252,16 +218,43 @@ Page {
             }
 
 
-            Button {
-                text: i18n.tr("Ok")
+            ListItem.ItemSelector {
+                id: boardSizeSelector
 
-                onClicked: {
-                    internal.colorIndex = paletteSelector.selectedIndex
-                    buttonGrid.model = constants.colors[paletteSelector.selectedIndex]
+                text: i18n.tr("Board Size")
+                model: constants.boardSizes
+                expanded: true
 
-                    gamePage.resetGame()
+                Component.onCompleted: selectedIndex = internal.sizeIndex
+            }
 
-                    PopupUtils.close(dialogue)
+            Row {
+
+                Button {
+                    width: parent.width / 2
+
+                    text: i18n.tr("Ok")
+
+                    onClicked: {
+                        internal.colorIndex = paletteSelector.selectedIndex
+                        buttonGrid.model = constants.colors[paletteSelector.selectedIndex]
+
+                        internal.sizeIndex = boardSizeSelector.selectedIndex
+
+                        gamePage.resetGame()
+
+                        PopupUtils.close(dialogue)
+                    }
+                }
+
+                Button {
+                    width: parent.width / 2
+
+                    text: i18n.tr("Cancel")
+
+                    onClicked: {
+                        PopupUtils.close(dialogue)
+                    }
                 }
             }
         }

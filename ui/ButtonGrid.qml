@@ -18,7 +18,7 @@ Grid {
         model: parent.model
 
         Rectangle {
-            width: parent.width / 6
+            width: buttonGrid.width / 6
             height: width
             radius: height
 
