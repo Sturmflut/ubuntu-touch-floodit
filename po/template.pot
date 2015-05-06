@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 22:19+0200\n"
+"POT-Creation-Date: 2015-05-06 23:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Oh no!"
 msgstr ""
 
-#: ui/LoseDialog.qml:15 ui/WinDialog.qml:15 ui/GamePage.qml:225
+#: ui/LoseDialog.qml:15 ui/WinDialog.qml:15 ui/GamePage.qml:238
 msgid "Ok"
 msgstr ""
 
@@ -49,22 +49,22 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: ui/GamePage.qml:73 ui/GamePage.qml:127 ui/GamePage.qml:154
+#: ui/GamePage.qml:73 ui/GamePage.qml:127 ui/GamePage.qml:165
 msgid "Step"
 msgstr ""
 
-#: ui/GamePage.qml:167
+#: ui/GamePage.qml:178
 msgid "Setup"
 msgstr ""
 
-#: ui/GamePage.qml:172
+#: ui/GamePage.qml:183
 msgid "Palette"
 msgstr ""
 
-#: ui/GamePage.qml:213
+#: ui/GamePage.qml:225
 msgid "Board Size"
 msgstr ""
 
-#: ui/GamePage.qml:242
+#: ui/GamePage.qml:259
 msgid "Cancel"
 msgstr ""

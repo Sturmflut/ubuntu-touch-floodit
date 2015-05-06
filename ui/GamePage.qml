@@ -68,7 +68,7 @@ Page {
             Label {
                 id: scoreLabel
 
-                width: parent.width - filler.width - paletteButton.width - newButton.width
+                width: parent.width
 
                 text: i18n.tr("Step") + " 0 / 22"
             }
@@ -79,7 +79,7 @@ Page {
             id: pixelGrid
 
             width: parent.width
-            height: parent.height - statusRow.height - buttonGrid.height
+            height: parent.height - statusRow.height - buttonGrid.height - bottomRow.height
 
 
             Component.onCompleted: {
@@ -140,6 +140,17 @@ Page {
                 }
             }
         }
+
+
+        Row {
+            id: bottomRow
+            width: parent.width
+
+            Item {
+                width: parent.width
+                height: units.gu(1)
+            }
+        }
     }
 
 
@@ -184,7 +195,7 @@ Page {
 
                 OptionSelectorDelegate {
                     Grid {
-                        columns: 6
+                       columns: 6
                         rows: 1
 
                         anchors.fill: parent
@@ -196,6 +207,7 @@ Page {
 
                             Rectangle {
                                 color: modelData
+
                                 width: parent.width / 6
                                 height: width
 
@@ -217,11 +229,12 @@ Page {
                 Component.onCompleted: selectedIndex = internal.sizeIndex
             }
 
-            Row {
+
+            Grid {
+                columns: 3
+                rows: 1
 
                 Button {
-                    width: parent.width / 2
-
                     text: i18n.tr("Ok")
 
                     onClicked: {
@@ -236,9 +249,13 @@ Page {
                     }
                 }
 
-                Button {
-                    width: parent.width / 2
 
+                Label {
+                    width: parent.width / 3
+                }
+
+
+                Button {
                     text: i18n.tr("Cancel")
 
                     onClicked: {

@@ -6,10 +6,14 @@ import Ubuntu.Components 1.1
 
 Grid {
     id: buttonGrid
+
     columns: 6
     rows: 1
+
     width: parent.width
     height: parent.width / 6
+
+    spacing: units.gu(1)
 
     property var model
 
@@ -19,7 +23,7 @@ Grid {
         model: parent.model
 
         Rectangle {
-            width: buttonGrid.width / 6
+            width: buttonGrid.width / 6 - units.gu(0.75)
             height: width
             radius: height
 

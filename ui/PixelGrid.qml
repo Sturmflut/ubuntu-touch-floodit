@@ -36,7 +36,7 @@ Grid {
             Behavior on color {
                 SequentialAnimation {
                     PauseAnimation {
-                        duration: xpos * ypos * 5
+                        duration: Math.max(xpos, ypos) * 15
                     }
 
                     ColorAnimation {
