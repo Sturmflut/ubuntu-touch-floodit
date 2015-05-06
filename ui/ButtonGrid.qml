@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtFeedback 5.0
 
 import Ubuntu.Components 1.1
 
@@ -24,19 +25,33 @@ Grid {
 
             color: modelData
 
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: modelData }
-                GradientStop { position: 0.15; color: Qt.lighter(modelData, 1.4) }
-                GradientStop { position: 0.5; color: Qt.darker(modelData, 1.4) }
-                GradientStop { position: 1.0; color: modelData }
+            Image {
+                anchors.fill: parent
+
+                source: "bubble.svg"
             }
+
 
             MouseArea {
                 anchors.fill: parent
 
-                onClicked: buttonGrid.clicked(parent.color)
+                onClicked: {
+                    vibration.start()
+                    buttonGrid.clicked(parent.color)
+                }
             }
         }
+    }
+
+    HapticsEffect {
+        id: vibration
+
+        attackIntensity: 1.0
+        attackTime: 100
+        intensity: 1.0
+        duration: 80
+        fadeTime: 100
+        fadeIntensity: 0.0
     }
 
     signal clicked(color color)

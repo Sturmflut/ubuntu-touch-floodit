@@ -29,11 +29,19 @@ Grid {
             width: pixelGrid.width / pixelGrid.columns
 
             property color finalColor: color
+            property int xpos: 0
+            property int ypos: 0
 
 
             Behavior on color {
-                ColorAnimation {
-                    duration: UbuntuAnimation.FastDuration
+                SequentialAnimation {
+                    PauseAnimation {
+                        duration: xpos * ypos * 5
+                    }
+
+                    ColorAnimation {
+                        duration: UbuntuAnimation.FastDuration
+                    }
                 }
             }
 
@@ -67,8 +75,13 @@ Grid {
             pixelGrid.children = ""
 
             // Create pixels
-            for(var i = 0; i < pixelGrid.columns * pixelGrid.rows; i++)
-                var newPixel = pixelComponent.createObject(pixelGrid)
+            for(var x = 0; x < pixelGrid.columns; x++)
+                for(var y = 0; y < pixelGrid.rows; y++)
+                {
+                    var newPixel = pixelComponent.createObject(pixelGrid)
+                    newPixel.xpos = x;
+                    newPixel.ypos = y;
+                }
         }
     }
 
@@ -161,3 +174,4 @@ Grid {
             fillRecursive(0, 0, newcolor, oldcolor, 0)
     }
 }
+
