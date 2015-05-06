@@ -13,6 +13,29 @@ Page {
     title: i18n.tr("Flood It")
 
 
+    head.actions: [
+        Action {
+            iconName: "settings"
+
+            text: i18n.tr("Settings")
+
+            onTriggered: {
+                PopupUtils.open(setupDialog)
+            }
+        },
+        Action {
+            iconName: "reset"
+
+            text: i18n.tr("Reset")
+
+            onTriggered: {
+                resetGame()
+            }
+        }
+    ]
+
+
+
     Constants {
         id: constants
     }
@@ -48,40 +71,6 @@ Page {
                 width: parent.width - filler.width - paletteButton.width - newButton.width
 
                 text: i18n.tr("Step") + " 0 / 22"
-            }
-
-
-            Button {
-                id: paletteButton
-                text: ""
-
-                iconName: "settings"
-
-                width: height
-
-                onClicked: {
-                    PopupUtils.open(setupDialog)
-                }
-            }
-
-
-            Item {
-                id: filler
-                height: parent.height
-                width: height
-            }
-
-
-            Button {
-                id: newButton
-
-                iconName: "reload"
-
-                width: height
-
-                onClicked: {
-                    resetGame()
-                }
             }
         }
 
