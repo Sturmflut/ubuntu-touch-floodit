@@ -44,8 +44,8 @@ Grid {
                 onClicked: {
                     if(audio_vibrate)
                     {
-                        vibration.start()
                         touchAudio.play();
+                        vibration.start();
                     }
 
                     buttonGrid.clicked(parent.color)
