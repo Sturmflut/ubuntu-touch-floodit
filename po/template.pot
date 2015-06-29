@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 23:12+0200\n"
+"POT-Creation-Date: 2015-06-30 00:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,46 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ui/GamePage.qml:13
+msgid "Flood It"
+msgstr ""
+
+#: ui/GamePage.qml:22
+msgid "Vibrate"
+msgstr ""
+
+#: ui/GamePage.qml:37
+msgid "Settings"
+msgstr ""
+
+#: ui/GamePage.qml:47
+msgid "Reset"
+msgstr ""
+
+#: ui/GamePage.qml:91 ui/GamePage.qml:145 ui/GamePage.qml:183
+msgid "Step"
+msgstr ""
+
+#: ui/GamePage.qml:196
+msgid "Setup"
+msgstr ""
+
+#: ui/GamePage.qml:201
+msgid "Palette"
+msgstr ""
+
+#: ui/GamePage.qml:243
+msgid "Board Size"
+msgstr ""
+
+#: ui/GamePage.qml:256 ui/LoseDialog.qml:15 ui/WinDialog.qml:15
+msgid "Ok"
+msgstr ""
+
+#: ui/GamePage.qml:277
+msgid "Cancel"
+msgstr ""
 
 #: ui/LoseDialog.qml:11
 msgid "You lose!"
@@ -25,46 +65,10 @@ msgstr ""
 msgid "Oh no!"
 msgstr ""
 
-#: ui/LoseDialog.qml:15 ui/WinDialog.qml:15 ui/GamePage.qml:238
-msgid "Ok"
-msgstr ""
-
 #: ui/WinDialog.qml:11
 msgid "Win!"
 msgstr ""
 
 #: ui/WinDialog.qml:12
 msgid "Congratulations!"
-msgstr ""
-
-#: ui/GamePage.qml:13
-msgid "Flood It"
-msgstr ""
-
-#: ui/GamePage.qml:20
-msgid "Settings"
-msgstr ""
-
-#: ui/GamePage.qml:29
-msgid "Reset"
-msgstr ""
-
-#: ui/GamePage.qml:73 ui/GamePage.qml:127 ui/GamePage.qml:165
-msgid "Step"
-msgstr ""
-
-#: ui/GamePage.qml:178
-msgid "Setup"
-msgstr ""
-
-#: ui/GamePage.qml:183
-msgid "Palette"
-msgstr ""
-
-#: ui/GamePage.qml:225
-msgid "Board Size"
-msgstr ""
-
-#: ui/GamePage.qml:259
-msgid "Cancel"
 msgstr ""
