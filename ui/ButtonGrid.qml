@@ -40,7 +40,9 @@ Grid {
                 anchors.fill: parent
 
                 onClicked: {
-                    vibration.start()
+                    if(audio_vibrate)
+                        vibration.start()
+
                     buttonGrid.clicked(parent.color)
                 }
             }

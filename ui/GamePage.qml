@@ -12,8 +12,25 @@ Page {
     id: gamePage
     title: i18n.tr("Flood It")
 
+    property bool audio_vibrate: true
+
 
     head.actions: [
+        Action {
+            iconName: "audio-volume-high"
+
+            text: i18n.tr("Vibrate")
+
+            onTriggered: {
+                audio_vibrate = !audio_vibrate;
+
+                if(audio_vibrate)
+                    iconName = "audio-volume-high";
+                else
+                    iconName = "audio-volume-muted";
+            }
+        },
+
         Action {
             iconName: "settings"
 
@@ -23,6 +40,7 @@ Page {
                 PopupUtils.open(setupDialog)
             }
         },
+
         Action {
             iconName: "reset"
 
