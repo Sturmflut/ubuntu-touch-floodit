@@ -17,6 +17,9 @@ Project {
         filter: "*.desktop"
     }
     Files {
+        filter: "*.wav"
+    }
+    Files {
         filter: "www/*.html"
     }
     Files {

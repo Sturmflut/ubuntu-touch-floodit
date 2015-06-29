@@ -3,6 +3,8 @@ import QtFeedback 5.0
 
 import Ubuntu.Components 1.1
 
+import QtMultimedia 5.0
+
 
 Grid {
     id: buttonGrid
@@ -41,7 +43,10 @@ Grid {
 
                 onClicked: {
                     if(audio_vibrate)
+                    {
                         vibration.start()
+                        touchAudio.play();
+                    }
 
                     buttonGrid.clicked(parent.color)
                 }
@@ -58,6 +63,11 @@ Grid {
         duration: 80
         fadeTime: 100
         fadeIntensity: 0.0
+    }
+
+    Audio {
+        id: touchAudio
+        source: "touch.wav"
     }
 
     signal clicked(color color)
